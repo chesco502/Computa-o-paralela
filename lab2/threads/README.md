@@ -8,7 +8,7 @@
    
 
 2) Com o intuto de demonstrar o a diferencas de tempo fiz um programa com uma tarefa mais complexa: A multiplicacao de uma matriz 10x10 cem vezes esse programa pode ser encontrado como "MultiplicacaoMedida".
-   infelizmente minha maquina pessoal e windows e e imcompativel com pthreds e o ambite aws nao e possivel criar uma maquina virtual com mais que uma cpu no plano free
+   infelizmente minha maquina pessoal é  imcompativel com pthreds e o ambite aws nao e possivel criar uma maquina virtual com mais que uma cpu no plano free
 
    ![Capturar](https://github.com/chesco502/Computa-o-paralela/assets/97119222/b8b31b23-ea64-4ca7-af19-c335f81e2dea)
 
@@ -17,6 +17,7 @@
    
    ![Capturar2](https://github.com/chesco502/Computa-o-paralela/assets/97119222/cd8082dc-2b90-4eeb-be21-23344f638658)
 
+   porderei testar o programa na maquina do laboratorio somente depois da entrega!
 
    
 
