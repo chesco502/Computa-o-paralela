@@ -7,7 +7,7 @@
 
    
 
-2) Com o intuto de demonstrar o a diferencas de tempo fiz um programa com uma tarefa mais complexa: A multiplicacao de uma matriz 10x10 cem vezes esse programa pode ser emcontrado como "MultiplicacaoMedida".
+2) Com o intuto de demonstrar o a diferencas de tempo fiz um programa com uma tarefa mais complexa: A multiplicacao de uma matriz 10x10 cem vezes esse programa pode ser encontrado como "MultiplicacaoMedida".
    
 
 2
