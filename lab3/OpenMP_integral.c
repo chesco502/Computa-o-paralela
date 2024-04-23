@@ -1,9 +1,30 @@
+/* File:    omp_trap1.c
+ * Purpose: Estimate definite integral (or area under curve) using trapezoidal *          rule.
+ *
+ * Input:   a, b, n
+ * Output:  estimate of integral from a to b of f(x)
+ *          using n trapezoids.
+ *
+ * Compile: gcc -g -Wall -fopenmp -o omp_trap1 omp_trap1.c
+ * Usage:   ./omp_trap1 <number of threads>
+ *
+ * Notes:   
+ *   1.  The function f(x) is hardwired.
+ *   2.  In this version, each thread explicitly computes the integral
+ *       over its assigned subinterval, a critical directive is used
+ *       for the global sum.
+ *   3.  This version assumes that n is evenly divisible by the 
+ *       number of threads
+ *
+ * IPP:  Section 5.2.1 (pp. 216 and ff.)
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 #include <omp.h>
 
-void Usage(char* prog_name);
+
 double f(double x);    /* Function we're integrating */
 void Trap(double a, double b, int n, double* global_result_p);
 
@@ -13,11 +34,15 @@ int main(int argc, char* argv[]) {
    int     n;                    /* Total number of trapezoids    */
    int     thread_count;
 
-   if (argc != 2) Usage(argv[0]);
+   
    thread_count = strtol(argv[1], NULL, 10);
-   printf("Enter a, b, and n\n");
-   scanf("%lf %lf %d", &a, &b, &n);
-   if (n % thread_count != 0) Usage(argv[0]);
+  
+   a=0;
+   b=3.14;
+   n=1000;
+
+   
+   
 #  pragma omp parallel num_threads(thread_count) 
    Trap(a, b, n, &global_result);
 
@@ -27,24 +52,12 @@ int main(int argc, char* argv[]) {
    return 0;
 }  /* main */
 
-/*--------------------------------------------------------------------
- * Function:    Usage
- * Purpose:     Print command line for function and terminate
- * In arg:      prog_name
- */
-void Usage(char* prog_name) {
-
-   fprintf(stderr, "usage: %s <number of threads>\n", prog_name);
-   fprintf(stderr, "   number of trapezoids must be evenly divisible by\n");
-   fprintf(stderr, "   number of threads\n");
-   exit(0);
-}  /* Usage */
 
 /*------------------------------------------------------------------
  * Function:    f
  * Purpose:     Compute value of function to be integrated
  * Input arg:   x
- * Return val:  f(x)
+ * Return val:  seno(x)
  */
 double f(double x) {
     double termo = x;
