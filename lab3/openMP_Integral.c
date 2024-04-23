@@ -15,11 +15,8 @@ int main(int argc, char* argv[]) {
 
    if (argc != 2) Usage(argv[0]);
    thread_count = strtol(argv[1], NULL, 10);
-   //printf("Enter a, b, and n\n");
-   //scanf("%lf %lf %d", &a, &b, &n);
-   a=0;
-   b=1;
-   n=1000;
+   printf("Enter a, b, and n\n");
+   scanf("%lf %lf %d", &a, &b, &n);
    if (n % thread_count != 0) Usage(argv[0]);
 #  pragma omp parallel num_threads(thread_count) 
    Trap(a, b, n, &global_result);
@@ -50,11 +47,17 @@ void Usage(char* prog_name) {
  * Return val:  f(x)
  */
 double f(double x) {
-   double return_val;
-
-   return_val = x*x;
-   return return_val;
-}  /* f */
+    double termo = x;
+    double soma = x;
+    int i;
+    
+    for (i = 1; i < 10; i++) {
+        termo *= -x * x / ((2 * i) * (2 * i + 1));
+        soma += termo;
+    }
+    
+    return soma;
+} /* f */
 
 /*------------------------------------------------------------------
  * Function:    Trap
