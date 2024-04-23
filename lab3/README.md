@@ -78,8 +78,13 @@ Grafico:
 
 ![Capturar](https://github.com/chesco502/Computa-o-paralela/assets/97119222/263d177c-7cf7-4936-90d4-9781102fbd72)
 
+2) Qual o speedup para 1, 2, 4, 6 e 8 processadores? Desenhe um gráfico mostrando os diferentes valores de speedup.
 
-      
+![Capturar](https://github.com/chesco502/Computa-o-paralela/assets/97119222/d5fc5fc0-f668-4daf-8145-dd997fefb054)
+
+3)Introduza na sua solução a diretiva critical. O que muda? Para provar seu ponto, refaça a solução com essa abordagem, calcule os novos valores e construa um novo gráfico de speedup para 1, 2, 4, 6 e 8 processadores.
+O meu codigo original ja esta implementado a diretiva critica!! mas sem isso o codigo pode produzir resultados impreviseveis por conta da condicao de corrida !!
+
 
 
 
