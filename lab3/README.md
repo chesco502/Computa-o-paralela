@@ -37,10 +37,11 @@ A)Tempo serial
 
 Como esperado obtivemos o mesmo tempo nos 5 testes!!
 
-B)Tempo seria
+B)Tempo serial
 1-Processador
       
-![Capturar](https://github.com/chesco502/Computa-o-paralela/assets/97119222/87f428e5-8671-4660-b702-91c3b82a7b23)
+![Capturar](https://github.com/chesco502/Computa-o-paralela/assets/97119222/851e78a5-df2e-4953-9d78-aa2fba5e4901)
+
 
 2-Processadores
       
