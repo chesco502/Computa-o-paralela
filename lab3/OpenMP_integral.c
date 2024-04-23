@@ -39,7 +39,7 @@ int main(int argc, char* argv[]) {
   
    a=0;
    b=3.14;
-   n=1000;
+   n=1000000;
 
    
    
