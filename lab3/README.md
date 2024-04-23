@@ -45,18 +45,22 @@ B)Tempo serial
 
 2-Processadores
       
-![Capturar2](https://github.com/chesco502/Computa-o-paralela/assets/97119222/804038d4-c6f7-4cbd-bc44-98eda1adc01a)
+![Capturar](https://github.com/chesco502/Computa-o-paralela/assets/97119222/b11b02ac-61dc-4171-a02b-96fe39ceb0f6)
+
 
 
 4-Processadores
       
-![Capturar3](https://github.com/chesco502/Computa-o-paralela/assets/97119222/4f53476e-2b31-43a6-b928-6b8ee017a310)
+![Capturar](https://github.com/chesco502/Computa-o-paralela/assets/97119222/55f9f6c6-e796-44bc-86c6-dfe3e45e95be)
+
 
 
 
 6-Processadores
+
       
-![Capturar4](https://github.com/chesco502/Computa-o-paralela/assets/97119222/966fa8e8-000e-4cd0-9e67-b6fcf5696bf2)
+![Capturar](https://github.com/chesco502/Computa-o-paralela/assets/97119222/a67ffa39-f723-4055-a247-4121f75d3d38)
+
 
 
 8-Processadores
