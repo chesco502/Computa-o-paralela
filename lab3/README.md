@@ -35,7 +35,12 @@ A)Tempo serial
       
 ![Capturar5](https://github.com/chesco502/Computa-o-paralela/assets/97119222/6daa4d60-c965-40c1-a00e-1080a0a971cc)
 
-Como esperado obtivemos o mesmo tempo nos 5 testes!!
+Como esperado obtivemos o tempos similares nos 5 testes 
+
+Grafico:
+
+![Capturar](https://github.com/chesco502/Computa-o-paralela/assets/97119222/8a089280-4f56-4a14-ba00-c9daafbc1e99)
+
 
 B)Tempo serial
 1-Processador
@@ -66,6 +71,13 @@ B)Tempo serial
 8-Processadores
       
 ![Capturar5](https://github.com/chesco502/Computa-o-paralela/assets/97119222/f4e2fafa-9514-4394-9be3-e6766281deb7)
+
+Como podemos ver temos uma melhora de 1 ate 6 processadores porem uma piora no teste com 8 porvavelmente por alguma anomalia.
+
+Grafico:
+
+![Capturar](https://github.com/chesco502/Computa-o-paralela/assets/97119222/263d177c-7cf7-4936-90d4-9781102fbd72)
+
 
       
 
