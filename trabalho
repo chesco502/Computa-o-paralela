@@ -1,1 +1,20 @@
+#include <stdio.h>
 
+double euler(int n) {
+    double sum = 0.0;
+    double factorial = 1.0;
+
+    for (int i = 0; i <= n; i++) {
+        sum += 1.0 / factorial;
+        factorial *= (i + 1); // Incrementa o fatorial
+    }
+
+    return sum;
+}
+
+int main() {
+    int n = 20; // Defina o valor de n aqui
+    double result = euler(n);
+    printf("Aproximação do número de Euler com n = %d: %.60f\n", n, result);
+    return 0;
+}
