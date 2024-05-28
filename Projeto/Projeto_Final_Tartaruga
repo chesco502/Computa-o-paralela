@@ -60,7 +60,7 @@ int main(int argc, char *argv[]) {
         calcularSerieEuler(fatoriais, soma, n, precisaoBits);
     }
 
-    printf("Resultado da aproximação de Euler: \ne = ");
+    printf("Resultado do calculo de  Euler: \ne = ");
     mpfr_out_str(stdout, 10, 0, soma, MPFR_RNDU);
     printf("\n");
 
