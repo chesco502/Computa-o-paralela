@@ -1,4 +1,4 @@
-include <stdio.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <mpfr.h>
 #include <omp.h>
@@ -6,6 +6,7 @@ include <stdio.h>
 void calcularFatoriais(mpfr_t *fatoriais, int n, int precisaoBits) {
     mpfr_init2(fatoriais[0], precisaoBits);
     mpfr_set_ui(fatoriais[0], 1, MPFR_RNDN);
+
     for (int i = 1; i <= n; i++) {
         mpfr_init2(fatoriais[i], precisaoBits);
         mpfr_mul_ui(fatoriais[i], fatoriais[i-1], i, MPFR_RNDN);
@@ -15,6 +16,7 @@ void calcularFatoriais(mpfr_t *fatoriais, int n, int precisaoBits) {
 void calcularSerieEuler(mpfr_t *fatoriais, mpfr_t somaGlobal, int n, int precisaoBits) {
     int idThread = omp_get_thread_num();
     int numThreads = omp_get_num_threads();
+    
     int tamanhoBloco = n / numThreads;
     int inicio = idThread * tamanhoBloco;
     int fim = (idThread == numThreads - 1) ? n : (inicio + tamanhoBloco);
@@ -29,13 +31,10 @@ void calcularSerieEuler(mpfr_t *fatoriais, mpfr_t somaGlobal, int n, int precisa
         mpfr_add(somaLocal, somaLocal, termo, MPFR_RNDN);
     }
 
-    #pragma omp critical
-    {
-        mpfr_add(somaGlobal, somaGlobal, somaLocal, MPFR_RNDN);
-    }
-
+    mpfr_add(somaGlobal, somaGlobal, somaLocal, MPFR_RNDN);
     mpfr_clear(termo);
     mpfr_clear(somaLocal);
+    
 }
 
 int main(int argc, char *argv[]) {
@@ -51,12 +50,12 @@ int main(int argc, char *argv[]) {
     mpfr_t soma, *fatoriais;
     mpfr_init2(soma, precisaoBits);
     mpfr_set_ui(soma, 0, MPFR_RNDN);
-    fatoriais = (mpfr_t*)malloc(n * sizeof(mpfr_t));
 
+    fatoriais = (mpfr_t *) malloc(n * sizeof(mpfr_t));
     calcularFatoriais(fatoriais, n, precisaoBits);
 
     omp_set_num_threads(numThreads);
-    #pragma omp parallel num_threads(numThreads)
+#	pragma omp parallel num_threads(numThreads)
     {
         calcularSerieEuler(fatoriais, soma, n, precisaoBits);
     }
