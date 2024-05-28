@@ -3,69 +3,85 @@
 #include <mpfr.h>
 #include <omp.h>
 
+// Função para calcular fatoriais de 0 a n. 
 void calcularFatoriais(mpfr_t *fatoriais, int n, int precisaoBits) {
+    // Inicializa o primeiro fatorial (0!) com a precisão especificada
     mpfr_init2(fatoriais[0], precisaoBits);
-    mpfr_set_ui(fatoriais[0], 1, MPFR_RNDN);
-
+    mpfr_set_ui(fatoriais[0], 1, MPFR_RNDN); // 0! = 1
+    // Loop para calcular os fatoriais de 1 a n
     for (int i = 1; i <= n; i++) {
-        mpfr_init2(fatoriais[i], precisaoBits);
-        mpfr_mul_ui(fatoriais[i], fatoriais[i-1], i, MPFR_RNDN);
+        mpfr_init2(fatoriais[i], precisaoBits); // Inicializa o espaço para o i-ésimo fatorial
+        mpfr_mul_ui(fatoriais[i], fatoriais[i-1], i, MPFR_RNDN); // i! = (i-1)! * i
     }
 }
 
+// Função para calcular a série de Euler !!
 void calcularSerieEuler(mpfr_t *fatoriais, mpfr_t somaGlobal, int n, int precisaoBits) {
-    int idThread = omp_get_thread_num();
-    int numThreads = omp_get_num_threads();
-    
-    int tamanhoBloco = n / numThreads;
-    int inicio = idThread * tamanhoBloco;
-    int fim = (idThread == numThreads - 1) ? n : (inicio + tamanhoBloco);
+    int idThread = omp_get_thread_num(); // Obtém o ID da thread
+    int numThreads = omp_get_num_threads(); // Obtém o número total de threads
+    int tamanhoBloco = n / numThreads; // Calcula quantas   iterações para cada thread
+    int inicio = idThread * tamanhoBloco; // Calcula o índice de início para esta thread
+    int fim = (idThread == numThreads - 1) ? n : (inicio + tamanhoBloco); // Calcula o índice de fim para esta thread
 
-    mpfr_t termo, somaLocal;
-    mpfr_init2(termo, precisaoBits);
-    mpfr_init2(somaLocal, precisaoBits);
-    mpfr_set_ui(somaLocal, 0, MPFR_RNDN);
+    mpfr_t termo, somaLocal; // Declara variáveis locais 
+    mpfr_init2(termo, precisaoBits); // Inicializa termo com a precisão dada 
+    mpfr_init2(somaLocal, precisaoBits); // Inicializa somaLocal 
+    mpfr_set_ui(somaLocal, 0, MPFR_RNDN); // Inicializa somaLocal com 0
 
+    // Loop para calcular a soma local da série de Euler para o bloco desta thread
     for (int i = inicio; i < fim; i++) {
-        mpfr_ui_div(termo, 1, fatoriais[i], MPFR_RNDN);
-        mpfr_add(somaLocal, somaLocal, termo, MPFR_RNDN);
+        mpfr_ui_div(termo, 1, fatoriais[i], MPFR_RNDN); // Calcula 1/i!
+        mpfr_add(somaLocal, somaLocal, termo, MPFR_RNDN); // Adiciona o termo à soma local
     }
 
-    mpfr_add(somaGlobal, somaGlobal, somaLocal, MPFR_RNDN);
+    // Uso do omp critical para evitar condicao de corrida !!
+    #pragma omp critical
+    {
+        mpfr_add(somaGlobal, somaGlobal, somaLocal, MPFR_RNDN); // Adiciona somaLocal à somaGlobal
+    }
+
+    // Libera a memória utilizada pelas variáveis locais
     mpfr_clear(termo);
     mpfr_clear(somaLocal);
-    
 }
 
 int main(int argc, char *argv[]) {
+    // Verifica se todos os argumentos foram dados 
     if (argc != 4) {
         printf("Uso: <threads> <iteracoes> <precisao_bits>\n");
         return 1;
     }
 
+    
     int numThreads = atoi(argv[1]);
     int n = atoi(argv[2]);
     int precisaoBits = atoi(argv[3]);
 
+   
     mpfr_t soma, *fatoriais;
-    mpfr_init2(soma, precisaoBits);
-    mpfr_set_ui(soma, 0, MPFR_RNDN);
+    mpfr_init2(soma, precisaoBits); // Inicializa soma com a precisão especificada
+    mpfr_set_ui(soma, 0, MPFR_RNDN); // Inicializa soma com 0
+    fatoriais = (mpfr_t*)malloc(n * sizeof(mpfr_t)); // Aloca memória para o array de fatoriais
 
-    fatoriais = (mpfr_t *) malloc(n * sizeof(mpfr_t));
+    // Calcula os fatoriais de 0 a n
     calcularFatoriais(fatoriais, n, precisaoBits);
 
+    // Configura o número de threads para OpenMP
     omp_set_num_threads(numThreads);
-#	pragma omp parallel num_threads(numThreads)
+    #pragma omp parallel num_threads(numThreads)
     {
+        // Cada thread calcula uma parte da série de Euler
         calcularSerieEuler(fatoriais, soma, n, precisaoBits);
     }
 
-    printf("Resultado do calculo de  Euler: \ne = ");
+    // print de resultado
+    printf("Resultado da aproximação de Euler: \ne = ");
     mpfr_out_str(stdout, 10, 0, soma, MPFR_RNDU);
     printf("\n");
 
+    // Libera a memória
     mpfr_clear(soma);
     free(fatoriais);
 
-    return 0;
+    return 0; // FIN!!
 }
