@@ -19,3 +19,12 @@ da constante de Euler1
   apresentar os seguintes resultados na entrega:
   1.  O valor de e final calculado;
   2. O tempo T que levou para atingir esse valor.
+
+## Resolucao Dos Problemas Idenficados:
+1. ### como obter  a precisão necessaria pra a representacao de euler?
+   + **Com a utilizacao da biblioteca mpfr.h!!** com a bliblioteca pude realizar contas com ponto flutuante com precisoes muito maiores que com o padrao da linguagem C.
+2. ### Como implementar o paralelismo?
+   + Foi utilizado a blioteca omp.h e tecnicas vistas em aula como por exemplo evitar  condições de corrida.
+## Resultado: 
+
+
