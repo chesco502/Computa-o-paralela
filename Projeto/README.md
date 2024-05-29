@@ -40,7 +40,7 @@ utilizando a seguinte maquina:
 
 
 
-obtemos os resultados:
+Obtemos os resultados:
 Rodando o codigo com 6 threads 7000000 de iteracoes e uma precisao de 1000 bits obetemos o seguinte resultado !!: 
 ![Capturar](https://github.com/chesco502/Computa-o-paralela/assets/97119222/bd56a69b-dda0-495f-a7af-3fc31defc774)
 
