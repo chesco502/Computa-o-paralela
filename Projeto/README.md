@@ -28,8 +28,9 @@ da constante de Euler1
 
 ## Como Executar o codigo 
 ### Assumindo Ubuntu 22.04 como sistema operacional:
-- `sudo apt-get install libmpfr-dev`
-- `gcc -o euler euler.c -lmpfr -lgomp -fopenmp`
+1. `sudo apt-get install libmpfr-dev`
+2. `gcc -o euler euler.c -lmpfr -lgomp -fopenmp`
+3. .\euler.c (threads) (interacoes ) (bits de precisao)
   
 
 
