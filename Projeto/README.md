@@ -4,7 +4,7 @@ Grupo : Francesco Zangrandi Coppola | TIA:32271697 | RA: 10403340
 1. Executar a metodologia de desenvolvimento em paralelismo;
 2. Aplicar estratégias de otimização para programas paralelos;
 3. Conhecer as bibliotecas e ferramentas de paralelismo.
-4. 
+
 ## Problema 
 Considere o movimento da tartaruga, que começa andando rápido e vai diminuindo a velocidade
 com o passar do tempo. Nossa tartaruga imaginária tem o movimento modelado pela série de Taylor
