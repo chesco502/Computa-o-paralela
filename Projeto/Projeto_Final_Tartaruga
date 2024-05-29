@@ -17,10 +17,10 @@ void calcularFatoriais(mpfr_t *fatoriais, int n, int precisaoBits) {
 
 // Função para calcular a série de Euler !!
 void calcularSerieEuler(mpfr_t *fatoriais, mpfr_t somaGlobal, int n, int precisaoBits) {
-    int idThread = omp_get_thread_num(); // Obtém o ID da thread
-    int numThreads = omp_get_num_threads(); // Obtém o número total de threads
-    int tamanhoBloco = n / numThreads; // Calcula quantas   iterações para cada thread
-    int inicio = idThread * tamanhoBloco; // Calcula o índice de início para esta thread
+    int idThread = omp_get_thread_num(); 
+    int numThreads = omp_get_num_threads(); 
+    int tamanhoBloco = n / numThreads; 
+    int inicio = idThread * tamanhoBloco; 
     int fim = (idThread == numThreads - 1) ? n : (inicio + tamanhoBloco); // Calcula o índice de fim para esta thread
 
     mpfr_t termo, somaLocal; // Declara variáveis locais 
