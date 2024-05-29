@@ -25,6 +25,16 @@ da constante de Euler1
    + **Com a utilizacao da biblioteca mpfr.h!!** com a bliblioteca pude realizar contas com ponto flutuante com precisoes muito maiores que com o padrao da linguagem C.
 2. ### Como implementar o paralelismo?
    + Foi utilizado a blioteca omp.h e tecnicas vistas em aula como por exemplo evitar  condições de corrida.
-## Resultado: 
+## Resultado:
+utilizando a seguinte maquina:
+![image](https://github.com/chesco502/Computa-o-paralela/assets/97119222/09c17b45-b985-43a2-9d26-d1d5e8ccff0a)
 
+
+
+obtemos os resultados:
+Rodando o codigo com 6 threads 7000000 de iteracoes e uma precisao de 1000 bits obetemos o seguinte resultado !!: 
+![Capturar](https://github.com/chesco502/Computa-o-paralela/assets/97119222/bd56a69b-dda0-495f-a7af-3fc31defc774)
+
+Rodando o mesmo  codigo com 1 (basicamente rodando de forma seguencial) podemos ver um grande diferenca de tempo:
+![Capturar](https://github.com/chesco502/Computa-o-paralela/assets/97119222/f9ed513f-c8f4-45e1-8ab3-20f1349ff47b)
 
